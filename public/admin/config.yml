@@ -1,0 +1,148 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/uploads
+public_folder: /uploads
+
+publish_mode: editorial_workflow
+
+site_url: https://olimem.co.zw
+display_url: https://olimem.co.zw
+logo_url: https://olimem.co.zw/logo.png
+
+collections:
+  - name: news
+    label: News & Insights
+    label_singular: Article
+    folder: src/content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Title, name: title, widget: string, required: true }
+      - { label: Publish Date, name: date, widget: datetime, required: true }
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Sage Solutions
+          - GIS
+          - Software Development
+          - Cloud
+          - Cybersecurity
+          - Digital Transformation
+          - Company News
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Read Time, name: readTime, widget: string, default: "5 min" }
+      - { label: Excerpt, name: excerpt, widget: text, required: true }
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: false
+      - { label: Body, name: body, widget: markdown, required: true }
+
+  - name: services
+    label: Services
+    label_singular: Service
+    folder: src/content/services
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Title, name: title, widget: string, required: true }
+      - { label: Description, name: description, widget: text, required: true }
+      - { label: Icon (Emoji), name: icon, widget: string, default: "⚙️" }
+      - label: Color Gradient
+        name: color
+        widget: select
+        options:
+          - from-green-primary to-green-secondary
+          - from-blue-accent to-blue-600
+          - from-purple-600 to-blue-accent
+          - from-orange-500 to-red-500
+          - from-cyan-500 to-blue-accent
+          - from-red-500 to-red-700
+          - from-teal-500 to-green-primary
+      - { label: CTA Button Text, name: cta, widget: string }
+      - label: Sub-Services
+        name: subServices
+        widget: list
+        fields:
+          - { label: Name, name: name, widget: string }
+          - label: Items
+            name: items
+            widget: list
+            field:
+              label: Item
+              name: item
+              widget: string
+      - label: Industries (optional)
+        name: industries
+        widget: list
+        required: false
+        field:
+          label: Industry
+          name: industry
+          widget: string
+
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    folder: src/content/testimonials
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Client Name, name: name, widget: string, required: true }
+      - { label: Position, name: position, widget: string, required: true }
+      - { label: Company, name: company, widget: string, required: true }
+      - { label: Quote, name: quote, widget: text, required: true }
+      - label: Photo
+        name: image
+        widget: image
+        required: false
+
+  - name: portfolio
+    label: Portfolio Projects
+    label_singular: Project
+    folder: src/content/portfolio
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Title, name: title, widget: string, required: true }
+      - { label: Client, name: client, widget: string, required: true }
+      - { label: Industry, name: industry, widget: string, required: true }
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Sage Projects
+          - GIS Projects
+          - Custom Software
+          - Infrastructure
+          - Cloud
+          - Cybersecurity
+      - { label: Challenge, name: challenge, widget: text, required: true }
+      - { label: Solution, name: solution, widget: text, required: true }
+      - { label: Results, name: results, widget: text, required: true }
+      - label: Tags
+        name: tags
+        widget: list
+        field:
+          label: Tag
+          name: tag
+          widget: string
+      - label: Images
+        name: images
+        widget: list
+        required: false
+        field:
+          label: Image
+          name: image
+          widget: image
